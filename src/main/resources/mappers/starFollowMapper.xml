@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.StarFollowMapper">
+    <insert id="followCrew">
+        insert into crew_follow (crew_id, email) values (#{crewId}, #{email})
+    </insert>
+    <insert id="followActor">
+        insert into actor_follow (email, actor_id) values (#{email}, #{actorId})
+    </insert>
+    <select id="getCrewFollowInfo" resultType="int">
+        select count(*) from crew_follow where email = #{currentId} and crew_id = #{personId}
+    </select>
+    <select id="getActorFollowInfo" resultType="int">
+        select count(*) from actor_follow where email = #{currentId} and actor_id = #{personId}
+    </select>
+    <delete id="unFollowCrew">
+        delete from crew_follow where email = #{email} and crew_id = #{crewId}
+    </delete>
+    <delete id="unFollowActor">
+        delete from actor_follow where email = #{email} and actor_id = #{actorId}
+    </delete>
+    <select id="getAllFollow" resultType="www.project.domain.StarFollowVO">
+        SELECT email, crew_id AS crewId, NULL AS actorId, 'crew' AS type
+        FROM crew_follow
+        WHERE email = #{email}
+        UNION
+        SELECT email, NULL AS crewId, actor_id AS actorId, 'actor' AS type
+        FROM actor_follow
+        WHERE email = #{email}
+    </select>
+
+</mapper>

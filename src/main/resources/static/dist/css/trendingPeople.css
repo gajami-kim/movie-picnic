@@ -1,0 +1,19 @@
+.trendingPeopleContainer{
+    width: 1400px;
+    display: flex;
+    margin: 20px 0px 20px;
+    overflow: hidden;
+    height: 340px;
+    /* padding-right: 68px; */
+}
+.trendingPeople img{
+    width: 155px;
+    height: 220px;
+    border-radius: 80px;
+    box-shadow: 1px 2px 4px gray;
+}
+.trendingPeople{
+    margin: 40px;
+    text-align: center;
+    line-height: 30px;
+}

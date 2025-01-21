@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" th:href="@{/dist/css/user/join.css}">
+<th:block th:replace="~{header :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="container">
+            <div class="Join">
+                <div class="JoinLogo"></div>
+                <form action="/user/join" method="POST" class="JoinArea">
+                    <div class="JoinInputArea">
+                        <input type="text" name="email" id="JoinEmail" onchange="changeValue()" placeholder="이메일">
+                        <button type="button" disabled class="sendEmailBtn">인증번호 받기</button>
+                        <textarea type="text" name="emailVerifi" id="emailVerifi" placeholder="인증문자를 입력해주세요."></textarea>
+                        <button type="button" disabled class="checkEmailBtn">인증하기</button>
+                        <span id="JoinSpan0" class="JoinSpan"></span>
+                    </div>
+                    <div class="JoinInputArea">
+                        <input type="text" name="nickname" id="JoinNick" onchange="changeValue()" placeholder="닉네임">
+                        <span id="JoinSpan1" class="JoinSpan"></span>
+                    </div>
+                    <div class="JoinInputArea">
+                        <input type="password" name="pw" id="JoinPw" onchange="changeValue()" placeholder="비밀번호">
+                        <span id="JoinSpan2" class="JoinSpan"></span>
+                    </div>
+                    <div class="JoinInputArea">
+                        <input type="password" id="JoinCheckPw" onchange="changeValue()" placeholder="비밀번호 확인">
+                        <span id="JoinSpan3" class="JoinSpan"></span>
+                    </div>
+                    <div class="JoinBtnArea">
+                        <button type="button" class="JoinBtn">회원가입</button>
+                    </div>
+                </form>
+                <div class="JoinMidLine"></div>
+                <div class="JoinOr">OR</div>
+                <div class="SocialLogin">
+                    <div class="KakaoLogin">
+                        <a><img th:src="@{/dist/image/kakaoLogin.png}"></a>
+                    </div>
+                    <div class="NaverLogin">
+                        <a><img th:src="@{/dist/image/naverLogin.png}"></a>
+                    </div>
+                    <div class="GoogleLogin">
+                        <a><img th:src="@{/dist/image/googleLogin.jpg}"></a>
+                    </div>
+                </div>
+                <div class="LoginHref">
+                    <a th:href="@{/user/login}">로그인 하기</a>
+                </div>
+            </div>
+        </div>
+        <script src="/dist/js/user/join.js"></script>
+    </th:block>
+</th:block>
+</html>

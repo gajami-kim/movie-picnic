@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/dist/css/user/myPage.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div th:text="${userEmail}" style="display: none" id="userEmail"></div>
+<div th:text="${isFollow}" style="display: none" id="isFollow"></div>
+<div class="container">
+    <div class="section profile">
+        <div class="profile-image-container">
+            <img alt="Profile Picture" class="profile-image" id="myProfile">
+            <span onclick="changeProfileImage()" id="changeProfileImage"><img src="/dist/image/gear.svg" alt="no picture" class="changeProfileImage"></span>
+        </div>
+        <div class="profile-info">
+            <div style="font-size: 23px" id="nickName"></div>
+            <div style="font-size: 13px; color: #b1b1b1" id="email"></div>
+            <div style="font-size: 15px;" id="followInfo"></div>
+        </div>
+        <button id="goToHome"><a href="/">홈</a></button>
+    </div>
+    <div class="calendar">
+        <div class="calendar-header">
+            <button class="nav-button" onclick="prevMonth()">&#9664;</button>
+            <div id="monthYear" class="month-year"></div>
+            <button class="nav-button" onclick="nextMonth()">&#9654;</button>
+        </div>
+        <table class="calendar-table" id="calendarTable">
+            <thead>
+            <tr>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th class="weekend">토</th>
+                <th class="weekend">일</th>
+            </tr>
+            </thead>
+            <tbody id="calendarBody">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="countPrint">
+        <div class="count-section">
+            <div id="countWish"></div>
+            <div>찜한작품</div>
+        </div>
+        <div class="count-section">
+            <div id="countStar"></div>
+            <div>별점</div>
+        </div>
+        <div class="count-section">
+            <div id="countComment"></div>
+            <div>코멘트</div>
+        </div>
+    </div>
+    <div class="trend section">
+        <div class="trend-analysis">
+            <h2 id="userAnalysis"></h2>
+            <div class="chart-container">
+                <canvas id="donutChart"></canvas>
+                <div id="topGenresData" th:data-top-genres='${topGenres}'></div>
+            </div>
+            <div class="bar-chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="followActor section">
+        <span style="font-size: 21px; font-weight: 700">팔로우한 배우</span>
+        <div id="actorContainer"></div>
+    </div>
+    <div class="followDirector section">
+        <span style="font-size: 21px; font-weight: 700">팔로우한 감독</span>
+        <div id="crewContainer"></div>
+    </div>
+    <div id="modal" class="modal">
+        <button id="modalClose">X</button>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+    <div id="followModal" class="follow-modal">
+        <div class="follow-modal-content" id="followModalContent">
+            <button id="followModalClose">X</button>
+        </div>
+    </div>
+
+</div>
+<script sec:authorize="isAuthenticated()">
+    let currentId = document.getElementById('userEmail').innerText;
+    let loginId = `[[${#authentication.name}]]`;
+</script>
+<script src="/dist/js/user/myPage.js"></script>
+</body>
+</html>

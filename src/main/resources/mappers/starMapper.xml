@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.StarMapper">
+
+    <select id="getList" resultType="www.project.domain.StarVO">
+        select * from star where email = #{currentId}
+    </select>
+
+    <insert id="insertRate" >
+        insert into star(email,rate,media_id,date) values(#{email},#{rate},#{mediaId},now())
+    </insert>
+
+    <delete id="deleteRating">
+        delete from star where email = #{email} and media_Id = #{mediaId}
+    </delete>
+
+    <select id="getAlreadyStar" resultType="www.project.domain.StarVO">
+        select * from star where email=#{email} and media_id=#{mediaId}
+    </select>
+
+    <update id="updateRate">
+        update star set rate=#{rate} where email=#{email} and media_id=#{mediaId}
+    </update>
+
+    <select id="getAlreadyComment">
+        select * from comment where email=#{email} and media_id=#{mediaId}
+    </select>
+
+    <insert id="insertComment">
+        insert into comment(media_id,content,spoiler,email,reg_date) values(#{mediaId},#{content},#{spoiler},#{email},now())
+    </insert>
+
+    <select id="getCommentList" resultType="www.project.domain.CommentListDTO">
+        SELECT c.*, u.is_del, nickname
+        FROM comment  c
+        JOIN user u ON u.email = c.email
+        WHERE c.media_id = #{media_id};
+    </select>
+
+    <delete id="deleteComment">
+        delete from comment where comment_code = #{commentCode}
+    </delete>
+
+    <insert id="insertLike" parameterType="www.project.domain.CommentVO">
+        insert into comment_like(comment_code,email) values(#{commentCode},#{email})
+    </insert>
+
+    <update id="updateComment">
+        update comment set content=#{content},spoiler=#{spoiler} where comment_code = #{commentCode}
+    </update>
+
+    <update id="updateCommentCount">
+        UPDATE comment
+        SET count = (
+        SELECT COUNT(comment_like.comment_code)
+        FROM comment_like
+        WHERE comment.comment_code = comment_like.comment_code
+        );
+    </update>
+
+    <select id="getCode" resultType="www.project.domain.CommentVO">
+        select comment_code from comment_like where email=#{email}
+    </select>
+
+    <delete id="deleteCommentLike">
+        delete from comment_like where comment_code = #{commentCode} and email = #{email}
+    </delete>
+
+    <select id="islike" resultType="boolean">
+    SELECT EXISTS (
+    SELECT 1
+    FROM comment_like
+    WHERE comment_code = #{commentCode}
+    AND email = #{email}
+    )
+    </select>
+
+
+
+
+</mapper>

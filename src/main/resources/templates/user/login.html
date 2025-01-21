@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" th:href="@{/dist/css/user/join.css}">
+<th:block th:replace="~{header :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+    <div class="container">
+        <div class="Login">
+            <div class="LoginLogo">
+                <img src="/image/movieLogo2.png" alt="logo" class="LoginLogoImg">
+            </div>
+            <form action="/user/login" method="post" class="LoginArea">
+                <div class="LoginInputArea">
+                    <input type="text" name="email" id="LoginEmail" onchange="changeValue()" placeholder="이메일">
+                </div>
+                <div class="LoginInputArea">
+                    <input type="password" name="pw" id="LoginPw" onchange="changeValue()" placeholder="비밀번호">
+                </div>
+                <button type="submit" class="LoginBtn">로그인</button>
+            </form>
+            <div class="LoginMidLine"></div>
+            <div class="LoginOr">OR</div>
+            <div class="SocialLogin">
+                <div class="KakaoLogin">
+                    <a href="/oauth2/authorization/kakao"><img th:src="@{/dist/image/kakaoLogin.png}"></a>
+                </div>
+                <div class="NaverLogin">
+                    <a href="/oauth2/authorization/naver"><img th:src="@{/dist/image/naverLogin.png}"></a>
+                </div>
+                <div class="GoogleLogin">
+                    <a href="/oauth2/authorization/google"><img th:src="@{/dist/image/googleLogin.jpg}"></a>
+                </div>
+            </div>
+            <div class="JoinHref">
+                <a th:href="@{/user/join}" class="LoginFind">회원가입</a>
+                <a th:href="@{/user/findUser}" class="LoginFind">아이디 / 비밀번호 찾기</a>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                alert('로그인 후 이용 가능합니다.');
+            }else if(urlParams.has('false')){
+                alert('아이디와 비밀번호를 확인해주세요.');
+            }
+        };
+    </script>
+    </th:block>
+</th:block>
+</html>

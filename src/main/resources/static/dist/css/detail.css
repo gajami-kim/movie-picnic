@@ -1,0 +1,311 @@
+/* 레이아웃 스타일 */
+.wrap {
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+
+.detailWrap {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1300px;
+    height: 100vh;
+    margin: 30px auto;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.detail1 {
+    width: 100%;
+    height: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 60%;
+}
+
+.detail1Wrap {
+    width: 1300px;
+    height: 70%;
+    display: flex;
+    margin: auto;
+    align-items: flex-end;
+}
+
+.detail2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+}
+
+.detail2Wrap {
+    width: 1300px;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+}
+
+.detail3 {
+    width: 1300px;
+    height: 400px;
+    color: black;
+}
+
+.detail4 {
+    width: 1300px;
+    text-align: center;
+    color: black;
+    padding: 20px 30px;
+}
+
+/* 텍스트 스타일 */
+.detailTitle {
+    font-size: 30px;
+}
+
+.detailStory {
+    height: 140px;
+    color: #333;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailText {
+    width: 750px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-top: 10px;
+}
+
+.more-text, .less-text {
+    font-size: 16px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.detailComment > form > button {
+    width: 150px;
+    height: 100px;
+}
+
+.detailSubmitBtn > button {
+    width: 100px;
+    height: 100px;
+}
+
+/* 댓글 관련 스타일 */
+.detailComment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+    height: 300px;
+}
+
+.detailComment > form {
+    display: flex;
+    flex-direction: row;
+}
+
+.detailComment > form > textarea {
+    width: 650px;
+    height: 150px;
+    resize: none;
+}
+
+.detailComment > form > input {
+    height: 15px;
+}
+
+.detailCommentUl {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detailCommentLi {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detailUserName {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.detailRegDate {
+    font-size: 14px;
+    color: #999;
+}
+
+.detailContent {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.commentlikediv {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.commentlikeCount {
+    margin-right: 10px;
+}
+
+.commentLikeBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.commentLikeBtn:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+/* 평가 관련 스타일 */
+.voteAverage {
+    width: 200px;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.rating {
+    display: flex;
+    width: 200px;
+}
+
+.rating__input {
+    display: none;
+}
+
+.rating__label {
+    width: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.rating__label .star-icon {
+    width: 20px;
+    height: 40px;
+    display: block;
+    background-size: 40px;
+}
+
+.rating__label--full .star-icon {
+    background-position: right;
+}
+
+.rating__label--half .star-icon {
+    background-position: left;
+}
+
+.rating.readonly .star-icon {
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* 카테고리 관련 스타일 */
+.detailCateUl {
+    display: flex;
+    flex-direction: row;
+}
+
+.detailCateUl > li {
+    padding: 0 2px;
+    border: 2px solid black;
+    background-color: green;
+    border-radius: 8px;
+}
+
+/* 포스터 및 배경 관련 스타일 */
+.mainposter {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 기타 스타일 */
+.detail1Top {
+    width: auto;
+    height: auto;
+    color: black;
+}
+
+.detailCheck {
+    padding-top: 25px;
+}
+
+.detailCheck > label {
+    color: black;
+}
+
+.detail1Review {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+}
+
+.cancelText {
+    position: relative;
+    border-bottom: 1px dotted black;
+}
+
+.cancelTextSpan {
+    color: black;
+}
+
+.cancelText .cancelTextSpan {
+    width: 85px;
+    background-color: #f4f4f4;
+    color: #000000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    transition: opacity 0.3s;
+}
+
+.cancelText .cancelTextSpan::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.detailCommentSetting:hover {
+    cursor: pointer;
+    background-color: gray;
+}

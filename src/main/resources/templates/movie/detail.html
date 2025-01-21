@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<title>제목</title>
+<html lang="ko">
+<link rel="stylesheet" th:href="@{/dist/css/detail.css}">
+<th:block th:replace="~{header :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div id="userId" th:text="${#authentication.name}" style="display: none"></div>
+            <div class="detail1">
+                <div class="detail1Wrap">
+                    <div class="detailInfo">
+                        <ul class="detailInfoList">
+                            <li class="detailVoteLi">
+                                <label class="detailVote"></label>
+                            </li>
+                            <li class="detailTitleli">
+                                <h1 class="detailTitle"></h1>
+                            </li>
+                            <li class="detailReleaseDateLi">
+                                <p class="detailReleaseDate"></p>
+                            </li>
+                            <li class="detailRuntimeLi">
+                                <p class="detailRuntime"></p>
+                            </li>
+                            <li class="detailcateLi">
+                                <div class="detailcate"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detailLike">
+                        <div id="detailWish"></div>
+                        <div id="detailCollection">
+                           컬렉션 추가
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detailWrap">
+                <div class="detail2">
+                    <img class="mainposter">
+                    <div class="detail2Wrap">
+                        <div class="voteAverage">
+                            <div class="rating" id="ratingWrapDiv">
+                                <label class="rating__label rating__label--half" for="starhalf">
+                                    <input type="radio" id="starhalf" class="rating__input" name="rating" value="0.5">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--full" for="star1">
+                                    <input type="radio" id="star1" class="rating__input" name="rating" value="1">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--half" for="star1half">
+                                    <input type="radio" id="star1half" class="rating__input" name="rating" value="1.5">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--full" for="star2">
+                                    <input type="radio" id="star2" class="rating__input" name="rating" value="2">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--half" for="star2half">
+                                    <input type="radio" id="star2half" class="rating__input" name="rating" value="2.5">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--full" for="star3">
+                                    <input type="radio" id="star3" class="rating__input" name="rating" value="3">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--half" for="star3half">
+                                    <input type="radio" id="star3half" class="rating__input" name="rating" value="3.5">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--full" for="star4">
+                                    <input type="radio" id="star4" class="rating__input" name="rating" value="4">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--half" for="star4half">
+                                    <input type="radio" id="star4half" class="rating__input" name="rating" value="4.5">
+                                    <span class="star-icon"></span>
+                                </label>
+                                <label class="rating__label rating__label--full" for="star5">
+                                    <input type="radio" id="star5" class="rating__input" name="rating" value="5">
+                                    <span class="star-icon"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="detailStory">
+                            <span class="detailText"></span>
+                            <span class="more-text">더보기</span>
+                            <span class="less-text">줄이기</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail3">
+                    <div class="detailComment" id="commentArea">
+                        <form action="" method="post">
+                            <textarea id="commentText" type="text" placeholder="이 작품에 대한 평을 남겨보세요."></textarea>
+                            <div class="detail1Review">
+                                <div class="detailCheck">
+                                    <label>
+                                        <input type="checkbox" id="spoiler" value="">스포일러
+                                    </label> <!--밸류값은 생략하면 on 으로 -->
+                                </div>
+                                <div class="detailSubmitBtn">
+                                    <button type="button" id="commentBtn">등록</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="detail4">
+
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/dist/js/detail/movieDetail.js}"></script>
+        <script th:src="@{/dist/js/detail/reviewRating.js}"></script>
+    </th:block>
+</th:block>
+</html>

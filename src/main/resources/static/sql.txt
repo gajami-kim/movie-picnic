@@ -1,0 +1,106 @@
+-- Table: user
+CREATE TABLE user (
+    email VARCHAR(200) NOT NULL,
+    nickname VARCHAR(200) NULL,
+    pw VARCHAR(500) NULL,
+    profile VARCHAR(500) NULL,
+    provider VARCHAR(200) NULL,
+    provider_id VARCHAR(200) NULL,
+    is_del TINYINT DEFAULT 0,
+    PRIMARY KEY (email)
+);
+
+-- Table: user_follow
+CREATE TABLE user_follow (
+    follow_email VARCHAR(200) NULL,
+    email VARCHAR(200) NOT NULL
+);
+
+-- Table: calender
+CREATE TABLE calender (
+    media_id BIGINT NULL,
+    email VARCHAR(200) NOT NULL,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    media_type varchar(50)
+);
+
+-- Table: comment
+CREATE TABLE comment (
+    comment_code BIGINT AUTO_INCREMENT PRIMARY KEY,
+    media_id BIGINT NULL,
+    media_type varchar(50),
+    content VARCHAR(150) NULL,
+    spoiler TINYINT NULL DEFAULT 0,
+    email VARCHAR(200) NOT NULL,
+    count BIGINT NULL,
+    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table: comment_like
+CREATE TABLE comment_like (
+    comment_code BIGINT NOT NULL,
+    email VARCHAR(200) NOT NULL
+);
+
+-- Table: actor_follow
+CREATE TABLE actor_follow (
+    email VARCHAR(200) NOT NULL,
+    actor_id BIGINT NULL
+);
+
+-- Table: crew_follow
+CREATE TABLE crew_follow (
+    crew_id BIGINT NULL,
+    email VARCHAR(200) NOT NULL
+);
+
+-- Table: wish
+CREATE TABLE wish (
+    media_id BIGINT NULL,
+    media_type varchar(50),
+    email VARCHAR(200) NOT NULL
+);
+
+-- Table: collection
+CREATE TABLE collection (
+	cno	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	collection_name	varchar(500) NOT NULL,
+	email varchar(200) NOT NULL
+);
+
+-- Table: collection_detail
+CREATE TABLE collection_detail (
+	cno	int	NOT NULL,
+	media_type varchar(50) NOT NULL,
+	media_id bigint NOT NULL
+);
+
+-- Table: star
+CREATE TABLE star (
+    star_no INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(200) NOT NULL,
+    rate FLOAT NULL,
+    media_id BIGINT NULL,
+    media_type varchar(50),
+    date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table: auth
+CREATE TABLE auth (
+    email VARCHAR(200) NOT NULL,
+    role VARCHAR(200) DEFAULT 'ROLE_USER'
+);
+
+-- Adding Foreign Key Constraints
+ALTER TABLE user_follow ADD CONSTRAINT FK_user_TO_user_follow_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE calender ADD CONSTRAINT FK_user_TO_calender_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE comment ADD CONSTRAINT FK_user_TO_comment_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE comment_like ADD CONSTRAINT FK_comment_TO_comment_like_1 FOREIGN KEY (comment_code) REFERENCES comment(comment_code);
+ALTER TABLE comment_like ADD CONSTRAINT FK_user_TO_comment_like_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE actor_follow ADD CONSTRAINT FK_user_TO_actor_follow_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE crew_follow ADD CONSTRAINT FK_user_TO_crew_follow_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE wish ADD CONSTRAINT FK_user_TO_wish_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE collection ADD CONSTRAINT FK_user_TO_collection_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE collection_detail ADD CONSTRAINT FK_collection_TO_collection_detail_1 FOREIGN KEY(cno) REFERENCES collection(cno);
+ALTER TABLE star ADD CONSTRAINT FK_user_TO_star_1 FOREIGN KEY (email) REFERENCES user(email);
+ALTER TABLE auth ADD CONSTRAINT FK_user_TO_auth_1 FOREIGN KEY (email) REFERENCES user(email);

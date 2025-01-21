@@ -1,0 +1,302 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.container {
+    width: 1300px;
+    margin: 30px 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.section {
+    padding: 25px 0;
+    border-bottom: 1px solid #ddd;
+}
+.profile {
+    display: flex;
+    align-items: center;
+}
+.profile-image-container {
+    position: relative;
+    display: inline-block;
+    left: 20px;
+}
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.changeProfileImage{
+    margin-left: -20px;
+    width: 20px;
+    height: 20px;
+}
+.profile-info {
+    margin-left: 50px;
+}
+#nickName{
+    margin-bottom: 20px;
+}
+#email{
+    margin-bottom: 5px;
+}
+.calendar {
+    margin-top: 40px;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.nav-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.month-year {
+    font-size: 24px;
+}
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.calendar-table th, .calendar-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+    position: relative;
+}
+.calendar-table th {
+    background-color: #f2f2f2;
+}
+.calendar-table .saturday {
+    color: blue;
+}
+.calendar-table .sunday {
+    color: red;
+}
+.calendar-table .event {
+    background-color: #0000ff;
+    color: #ffffff;
+}
+.calendar-table .poster {
+    display: block;
+    margin: 0 auto;
+}
+.calendar-table .date-text {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.countPrint {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.count-section {
+    width: 30%;
+    height: 150px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.count-section div {
+    margin: 10px 0;
+}
+.trend {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.trend-analysis {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    width: 50%;
+    max-width: 400px;
+    margin: 0;
+    position: relative;
+    height: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bar-chart-container {
+    width: 50%;
+    max-width: 400px;
+    margin: 0;
+    position: relative;
+    height: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bar-chart-container canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 900px;
+    height: auto;
+    overflow: auto;
+    border: 1px solid #8f8f8f;
+    background-color: #fefefe;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#modalClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+#nickName {
+    display: inline-flex;
+    align-items: center;
+    font-size: 23px;
+}
+#nickNameSpan {
+    margin-right: 10px;
+}
+#follow {
+    margin-top: 3px;
+    margin-left: 10px;
+}
+#withdrawalBtn{
+    margin-left: 10px;
+}
+#crewContainer, #actorContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*justify-content: center;*/
+    align-items: center;
+    align-content: center;
+    /*height: 300px;*/
+}
+.profileContainer{
+    width: 200px;
+    height: 280px;
+    line-height: 280px;
+}
+.personImg{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+.personName{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+.personLink{
+    margin-left: 50px;
+    margin-top: 30px;
+}
+#goToHome{
+    position: absolute;
+    right: 320px;
+    top: 50px;
+}
+.follow-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.follow-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* 크기를 적절하게 조정 */
+    position: relative;
+    cursor: pointer;
+}
+
+#followModalClose {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    border: none;
+    background-color: white;
+}
+
+#followModalClose:hover,
+#followModalClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#followerCount,
+#followingCount{
+    cursor: pointer;
+}

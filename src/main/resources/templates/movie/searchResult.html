@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" th:href="@{/dist/css/searchResult.css}">
+<th:block th:replace="~{header :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="searchResult">
+            <div class="personResult"><div class="titleSpan personSpan">인물</div></div>
+            <div class="movieResult"><div class="titleSpan movieSpan">영화</div></div>
+            <div class="tvResult"><div class="titleSpan tvSpan">TV 프로그램</div></div>
+        </div>
+        <script th:src="@{/dist/js/searchResult.js}"></script>
+    </th:block>
+</th:block>
+</html>

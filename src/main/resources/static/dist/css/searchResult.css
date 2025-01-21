@@ -1,0 +1,47 @@
+.searchResult{
+    width: 1300px;
+    margin: 0 auto;
+}
+.titleSpan{
+    display: none;
+    width: 100%;
+    font-size: 25px;
+    margin:48px 0 20px;
+}
+.personResult, .tvResult, .movieResult{
+    display:flex;
+    flex-wrap:wrap;
+    margin: 0 30px;
+    float: left;
+    width: 1300px;
+}
+.personResultDiv{
+    width: 148px;
+    text-align: center;
+    margin: 0 29px 30px 0;
+}
+.personOne img{
+    width: 100%;
+    border-radius: 100px;
+}
+.movieResultDiv,.tvResultDiv{
+    width: 235px;
+    height: 385px;
+    text-align: center;
+    margin-right:25px;
+}
+.movieOne img, .tvOne img{
+    width: 100%;
+    height: 330px;
+}
+.nameDiv{
+    margin-top: 10px;
+}
+.nameDiv2 {
+    padding-top: 10px;
+}
+.personImg{
+    width: 148px;
+    height: 148px;
+    border-radius: 100px;
+}

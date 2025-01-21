@@ -1,0 +1,48 @@
+.personDetail{
+    width: 1300px;
+    margin: 0 auto;
+}
+.personDiv{
+    margin-top: 70px;
+    display: flex;
+}
+.personDiv img{
+    width: 205px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 6px gray;
+}
+.personName{
+    width:101px;
+}
+.personMediaList{
+    display: none;
+    width: 1300px;
+    margin: 60px 0 15px;
+}
+.personMovieInfo, .personTvInfo {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+}
+.personMovieOne, .personTvOne {
+    width: 29%;
+    height: 210px;
+    border: 1px solid gainsboro;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 14px 17px 0;
+    box-shadow: 0 0 5px 1px #dcdcdc70;
+}
+.mediaLeftInfo {
+    float: left;
+    width: 215px;
+}
+.mediaRightInfo {
+    float: right;
+}
+.mediaRightInfo img{
+    width: 141px;
+    height: 210px;
+    border-radius: 8px;
+}

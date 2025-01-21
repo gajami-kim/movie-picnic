@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.MyCollectionMapper">
+    <select id="getList" resultType="www.project.domain.CollectionDTO">
+        select * from collection where email = #{currentId}
+    </select>
+    <insert id="newList">
+        insert into collection(collection_name,email) values (#{collectionName}, #{email})
+    </insert>
+    <insert id="addList">
+        insert into collection_detail(cno, media_type, media_id) values(#{collectionId}, 'movie', #{mediaId})
+    </insert>
+</mapper>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="setFragment(content)">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>제목</title>
+        <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
+        <script>
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZmRmZTQ3YTQ0NzU2ZTI5MDAyNTcxNWE2YjQyZDhkNSIsIm5iZiI6MTcyMDU1MTg4Mi44MzAxMDcsInN1YiI6IjY2MDNkNTE3NjA2MjBhMDE3YzMwMjY0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kW6FWbNBxEum0GSPLqFOf-LQu3BMA-50-IJXe_Hd3w8'
+                }
+            };
+        </script>
+        <style>
+            .contain-header{
+                width: 100%;
+                height: 80px;
+                background-color: white;
+                box-shadow: 1px 1px 2px #a09f9f;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+            }
+            .outbox{
+                width: 85%;
+                height: 100%;
+                /*background-color: antiquewhite;*/
+                margin: 0 auto;
+                display: flex;
+            }
+            .inbox1{
+                width: 50%;
+                height: 100%;
+                /*background-color: blueviolet;*/
+            }
+            .conList{
+                /*background-color: red;*/
+                line-height: 80px;
+            }
+            .contents{
+                height: 100%;
+                display: inline;
+                font-size: 1.5em;
+                margin-left: 50px;
+            }
+            .contents2{
+                height: 100%;
+                display: inline;
+                margin-left: 15px;
+            }
+            .logoImg {
+                width: 152px;
+                vertical-align: middle;
+                margin-top: -10px;
+            }
+            .contents a,.contents2 a{
+                cursor: pointer;
+                text-decoration: none;
+                color: #484848;
+            }
+            .inbox2{
+                /*background-color: coral;*/
+                height: 100%;
+                width: 50%;
+            }
+            .searchBox{
+                line-height: 80px;
+                float: left;
+                margin-left:-50px;
+            }
+            .inbox2 input{
+                width: 300px;
+                height: 30px;
+                background-color: #e6e6e6;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                margin-left:250px;
+                padding: 10px;
+            }
+            .mypageBox{
+                line-height: 100px;
+                /* width: 95px; */
+                float: right;
+                margin-right: 110px;
+            }
+            .mypageBox a{
+                color: #484848;
+            }
+            #myProfile {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            .searchBtn{
+                width: 33px;
+                height: 23px;
+                background: rgba(0,0,0,0);
+                border: none;
+                outline: none;
+            }
+            .searchBtn img{
+                width: 100%;
+                height: 100%;
+                margin: 0 0 -7px -88px;
+            }
+            button{
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+    <nav class="contain-header">
+        <div class="outbox">
+            <div class="inbox1">
+                <ul class="conList">
+                    <li class="contents">
+                        <a th:href="@{/}">
+                            <img src="/image/movieLogo2.png" alt="logo" class="logoImg">
+                        </a>
+                    </li>
+                    <li class="contents">
+                        <a href="#">영화</a>
+                    </li>
+                    <li class="contents">
+                        <a href="#">시리즈</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="inbox2">
+                <ul class="conList">
+                    <li class="searchBox contents2">
+                        <input type="text" class="searchInput" placeholder="제목, 인물, 컬렉션으로 검색해보세요.">
+                        <button type="submit" class="searchBtn"><img th:src="@{/dist/image/search_icon.png}"></button>
+                    </li>
+                    <th:block sec:authorize="isAnonymous()">
+                        <li class="contents2"><a th:href="@{/user/login}">로그인</a></li>
+                        <li class="contents2"><a th:href="@{/user/join}">회원가입</a></li>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="logoutA contents2"><a th:href="@{/user/logout}">로그아웃</a></li>
+                        <li class="mypageBox contents2">
+                            <a onclick="goToMyPage(currentId)">
+                                <img id="myProfile">
+                            </a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="content-fluid">
+        <th:block th:replace="${content}"></th:block>
+    </div>
+    <script sec:authorize="isAuthenticated()">
+        let currentId = `[[${#authentication.name}]]`;
+        let userNickname = `[[${#authentication.getPrincipal().getUser().getNickname()}]]`;
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert("허용되지 않은 닉네임입니다.\n닉네임을 변경해주세요. ");
+                goToMyPage(currentId);
+            }else if(userNickname.includes("_user")) {
+                alert("허용되지 않은 닉네임입니다.\n닉네임을 변경해주세요. ");
+                goToMyPage(currentId);
+            }
+        });
+        function goToMyPage(currentId) {
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = '/user/mypage';
+
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'email';
+            hiddenField.value = currentId;
+
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+    <script th:src="@{/dist/js/header.js}"></script>
+    <script th:src="@{/dist/js/goToSearch.js}"></script>
+    </body>
+</th:block>
+</html>

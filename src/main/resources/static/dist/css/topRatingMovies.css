@@ -1,0 +1,48 @@
+#rightBtn2 {
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    box-shadow: 1px 2px 3px gray;
+    border-radius: 50px;
+    z-index: 10;
+    background-color: white;
+    position: absolute;
+    top: 173px;
+    right: 6px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#leftBtn2{
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    box-shadow: 1px 2px 3px gray;
+    border-radius: 50px;
+    z-index: 10;
+    background-color: white;
+    position: absolute;
+    top: 173px;
+    left: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.innerContainer2 {
+    display: flex;
+    transition: transform 1s;
+    margin: 0 auto;
+}
+
+.movieOutBox2{
+    width: 1400px;
+    position: relative;
+    height: 410px;
+    overflow: hidden;
+    cursor: pointer;
+    /* background-color: aqua; */
+    padding: 0px 28px;
+    /* line-height: 32px; */
+    font-size: 1.2em;
+}
+

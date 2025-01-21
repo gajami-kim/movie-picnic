@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.FollowMapper">
+
+    <select id="getFollowInfo" resultType="int">
+        select count(*) from user_follow where email = #{myEmail} and follow_email = #{email}
+    </select>
+    <insert id="followUser">
+        insert into user_follow(follow_email, email) values (#{followEmail}, #{email})
+    </insert>
+    <delete id="unfollowUser">
+        delete from user_follow where email = #{email} and follow_email = #{followEmail}
+    </delete>
+</mapper>

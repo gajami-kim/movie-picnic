@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.UserMapper">
+    <insert id="joinUser">
+        insert into user(email, nickname, pw) values (#{email},#{nickname},#{pw})
+    </insert>
+
+    <insert id="insertAuth">
+        insert into auth values(#{email},'ROLE_USER')
+    </insert>
+
+    <insert id="insertSocialUser">
+        insert into user(email,pw,nickname, profile, provider,provider_id)
+        values (#{email},#{pw},#{nickname},#{profile}, #{provider},#{providerId})
+    </insert>
+
+    <select id="duplicationNick" resultType="int">
+        select count(nickname) from user where nickname=#{nickName}
+    </select>
+
+    <select id="duplicationEmail" resultType="int">
+        select count(email) from user where email=#{email}
+    </select>
+
+    <select id="findEmail" resultType="www.project.domain.UserVO">
+        select * from user where nickname=#{nick}
+    </select>
+
+    <select id="checkEmail">
+        select * from user where email=#{email}
+    </select>
+
+    <select id="selectAuth" resultType="www.project.domain.AuthVO">
+        select * from auth as a join user as u on u.email=a.email where a.email=#{email}
+    </select>
+
+    <select id="findUserPw" resultType="int">
+        select count(nickname) and count(email) from user
+        where nickname=#{nick} and email=#{email}
+    </select>
+
+    <update id="updatePw">
+        update user set pw=#{pw} where email=#{email}
+    </update>
+
+
+    <select id="searchUser" resultType="www.project.domain.UserVO">
+        select * from user where provider_id=#{providerId}
+    </select>
+
+    <select id="getInfo" resultType="www.project.domain.UserVO">
+        select * from user where email = #{currentId}
+    </select>
+
+    <update id="updateProfile">
+        UPDATE user
+        SET profile = #{profile}
+        WHERE email = #{email}
+    </update>
+
+    <select id="isNicknameDuplicate" resultType="int">
+        select count(nickname) from user where nickname = #{nickname}
+    </select>
+    <update id="updateNickName">
+        update user
+        set nickname = #{newNickname}
+        where nickname = #{oldNickname}
+    </update>
+    <select id="getCounts" resultType="map">
+        SELECT
+        (SELECT COUNT(*) FROM wish WHERE email = #{email}) AS wish_count,
+        (SELECT COUNT(*) FROM star WHERE email = #{email}) AS star_count,
+        (SELECT COUNT(*) FROM comment WHERE email = #{email}) AS comment_count
+    </select>
+    <select id="getAllImagePaths" resultType="string">
+        SELECT profile FROM user
+    </select>
+    <update id="setDefaultImage">
+        UPDATE user
+        SET profile = NULL
+        WHERE email = #{currentId}
+    </update>
+    <update id="withdrawUser">
+        update user
+        set isDel = 1
+        where email = #{loginId}
+    </update>
+    <select id="getFollowerList" resultType="www.project.domain.UserFollowVO">
+        select email from user_follow where follow_email = #{currentId}
+    </select>
+    <select id="getFollowingList" resultType="www.project.domain.UserFollowVO">
+        select follow_email from user_follow where email = #{currentId}
+    </select>
+</mapper>

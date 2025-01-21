@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.project.repository.wishMapper">
+    <insert id="addWish">
+        insert into wish values(#{mediaId}, #{mediaType}, #{email})
+    </insert>
+    <select id="checkWish" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM wish
+        WHERE email = #{currentId}
+        AND media_id = #{mediaId}
+    </select>
+    <delete id="deleteWish">
+        delete from wish where email = #{email} and media_id = #{mediaId}
+    </delete>
+    <select id="getList" resultType="www.project.domain.WishVO">
+        select * from wish where email = #{myEmail}
+    </select>
+    <select id="getHeartCount" resultType="int">
+        select count(*) from wish where media_type = #{mediaType} and media_id = #{mediaId}
+    </select>
+</mapper>

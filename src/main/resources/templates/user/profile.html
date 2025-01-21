@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>프로필</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+    #myProfile {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        margin-top: 20px;
+        border-radius: 50%;
+    }
+    #title {
+        margin-top: 100px;
+    }
+    form {
+        margin-top: 40px;
+    }
+    #upload, #defaultImage{
+        margin-top: 50px;
+    }
+    #upload{
+        margin-right: 50px;
+    }
+
+</style>
+<body>
+<h2 id="title"></h2>
+<img id="myProfile" alt="no">
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file"><br>
+    <input type="hidden" name="currentId" id="idValue">
+    <input type="button" value="등록" id="upload">
+    <input type="button" value="기본이미지로 변경" id="defaultImage">
+</form>
+</body>
+<script>
+    let currentId = `[[${#authentication.name}]]`;
+
+    //유저정보
+    async function getUserInfo(currentId) {
+        try {
+            const url = '/user/info/' + currentId;
+            const config = {
+                method: 'GET'
+            };
+            const resp = await fetch(url, config);
+            const result = await resp.json();
+            return result;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    //프로필이미지띄우기
+    function displayProfileImage(profilePath) {
+        const uploadPath = '/upload/';
+        document.getElementById('myProfile').src = uploadPath + profilePath;
+    }
+    //팝업창띄울시 기본로직
+    getUserInfo(currentId).then(result => {
+        document.getElementById('myProfile').src = result.profile ? "" : "/dist/image/person-circle.svg";
+        document.getElementById('idValue').value = currentId;
+        if (result.profile == null || result.profile == '') {
+            document.getElementById('title').innerText = "프로필 이미지 등록";
+        } else {
+            document.getElementById('title').innerText = "프로필 이미지 수정";
+            displayProfileImage(result.profile);
+        }
+    });
+    //업로드버튼누를시
+    document.getElementById('upload').addEventListener('click', async function() {
+        const result = await updateProfile();
+        if (result === "true") {
+            alert('파일이 성공적으로 업로드되었습니다.');
+            if (window.opener) {
+                window.opener.location.reload();
+            }
+            window.close();
+        } else if (result === "false") {
+            alert('파일 업로드에 실패했습니다.');
+        }
+    });
+    //실제로 upload 시키는 비동기함수
+    async function updateProfile() {
+        const imagePattern = /(\.(jpg|jpeg|png|gif))$/i;
+        try {
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('파일을 선택해주세요.');
+                return;
+            }
+            if (!imagePattern.test(file.name)) {
+                alert("이미지 파일만 업로드 가능합니다.");
+                return;
+            }
+            const formData = new FormData();
+            formData.append('currentId', document.getElementById('idValue').value);
+            formData.append('file', file);
+            const response = await fetch('/user/uploadProfilePicture', {
+                method: 'POST',
+                body: formData
+            });
+            return await response.text();
+        } catch (error) {
+            console.error('요청을 처리하는 동안 오류가 발생했습니다.', error);
+        }
+    }
+    //이미지삭제후 기본이미지로 변경처리
+    document.getElementById('defaultImage').addEventListener('click', async () => {
+        const result = await setDefaultImage(currentId);
+        if(result == "1"){
+            alert("기본 프로필로 변경되었습니다. ")
+            window.opener.location.reload();
+            window.close();
+        }else{
+            alert("기본 프로필 변경 실패\n관리자에게 문의해주세요. ")
+        }
+
+    });
+    async function setDefaultImage(currentId){
+        try {
+            const response = await fetch(`/user/setDefaultImage?currentId=${encodeURIComponent(currentId)}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const result = await response.text();
+            return result;
+        } catch (error) {
+            console.error('Error:', error);
+            return 'Error resetting profile image';
+        }
+    }
+
+</script>
+</html>

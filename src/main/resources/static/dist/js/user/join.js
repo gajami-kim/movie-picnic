@@ -107,7 +107,7 @@ joinBtn.addEventListener('click',()=>{
         } else if(!duplicateNick){
             alert("닉네임을 다시 입력해주세요.");
         } else if(!duplicatePw){
-            alert("비밀번호를 다시 입력해주세요.");
+            alert("조건에 맞는 비밀번호를 입력해주세요.");
         } else if(!duplicatePwCheck){
             alert("비밀번호가 일치하지 않습니다. \n다시 입력해주세요.");
         }

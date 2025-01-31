@@ -10,18 +10,14 @@ personDetail(personId).then(async result => {
     let personId = result.id;
     personInfo.classList.add('personDiv');
     let structure = '';
-    if (profilePath !== '') {
-        structure += `<img src=${profilePath}>`;
-    } else {
-        if (result.gender === 1) {
-            structure += `<img src="/dist/image/default_profile_w.jpg">`;
-        } else {
-            structure += `<img src="/dist/image/default_profile_m.jpg">`;
-        }
-    }
+    structure += profilePath !== ''
+        ? `<img src=${profilePath}>`
+        : result.gender === 1
+            ? `<img src="/dist/image/default_profile_w.jpg">`
+            : `<img src="/dist/image/default_profile_m.jpg">`;
     structure += `
-    <ul class="personUl"><li class="personName">${result.name}</li>
-    <li class="personBirth">${result.birthday.replaceAll("-", ".")}</li>`;
+    <ul class="personUl"><li class="personName personLi">${result.name}</li>
+    <li class="personBirth personLi">${result.birthday.replaceAll("-", ".")}</li>`;
     // 사망 인물 체크
     if (result.deathday !== null) {
         structure += `<li class="personDeath">사망 ${result.deathday.replaceAll("-", ".")}</li>`;
@@ -58,7 +54,7 @@ personDetail(personId).then(async result => {
     try {
         const sns = await personSNS(personId);
         if (sns.instagram_id !== null) {
-            personInfo.querySelector('.personUl').innerHTML += `<li class="instaId"><a href="https://www.instagram.com/${sns.instagram_id}/">인스타그램</a></li>`;
+            personInfo.querySelector('.personUl').innerHTML += `<li class="instaId personLi"><a href="https://www.instagram.com/${sns.instagram_id}/">인스타그램</a></li>`;
         }
         if (sns.twitter_id !== null) {
             personInfo.querySelector('.personUl').innerHTML += `<li class="twitterId"><a href="https://www.x.com/${sns.twitter_id}/">X</a></li>`;
@@ -106,9 +102,9 @@ credits(personId).then(result=>{
         mediaDiv.classList.add(`person${mediaType.charAt(0).toUpperCase() + mediaType.slice(1)}One`);
         let structure = `
             <div class="mediaLeftInfo">
-                <div class="mlTitle">${mediaTitle}</div>
-                <div class="mDepart" data-id="${media.id}"></div>
-                <div class="mlData">${mediaDate.replaceAll("-", ".")}</div>
+                <div class="mlTitle mPadding">${mediaTitle}</div>
+                <div class="mDepart mPadding" data-id="${media.id}"></div>
+                <div class="mlData mPadding">${mediaDate.replaceAll("-", ".")}</div>
             </div>
             <div class="mediaRightInfo">
                 <a href="/movie/detail?${mediaType}Id=${media.id}">`;

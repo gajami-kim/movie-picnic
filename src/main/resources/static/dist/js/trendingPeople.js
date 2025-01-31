@@ -14,7 +14,7 @@ const fetchTrendingData = async ()=> {
         const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
         for(const p of people) {
             const innerContainer = document.querySelector('.trendingPeopleContainer');
-            const posterPath = p.profile_path ? `${imageBaseUrl}${p.profile_path}` : '';
+            const posterPath = p.profile_path ? `${imageBaseUrl}${p.profile_path}` : `/dist/image/default_profile_m.jpg`;
 
             const peopleDiv = document.createElement('div');
             peopleDiv.classList.add('trendingPeople');

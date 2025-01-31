@@ -1,6 +1,6 @@
 .container {
     width: 1300px;
-    margin: 20px 300px; /* 좌우 여백 300px */
+    margin: 20px auto;
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -70,6 +70,10 @@ input {
     margin: 0 auto 18px;
     text-align: center;
 }
+.LoginHref a {
+    text-decoration: none;
+    color: black;
+}
 .LoginFind{
     margin-left: 30px;
     text-decoration: none;
@@ -78,10 +82,10 @@ input {
 .JoinSpan{
     display: block;
     font-size: 14px;
-    margin: -8px 6px 0;
+    margin: 3px 6px 0;
 }
 .sendEmailBtn,.checkEmailBtn {
-    top: 30px;
+    top: 20px;
     right: 13px;
     z-index: 100;
     position: absolute;
@@ -92,11 +96,11 @@ input {
 }
 .checkEmailBtn{
     display: none;
-    top: 96px;
+    top: 82px;
 }
 #emailVerifi{
     display: none;
-    width: 652px;
+    width: 550px;
     height: 35px;
     border: none;
     background: gainsboro;

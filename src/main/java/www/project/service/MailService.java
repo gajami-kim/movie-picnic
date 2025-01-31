@@ -28,9 +28,9 @@ public class MailService{
         try{
             message.setFrom(new InternetAddress(fromEmail,"project"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-            message.setSubject("[project] 요청하신 이메일 인증입니다.");
+            message.setSubject("[Movie Picnic] 요청하신 이메일 인증입니다.");
             String text = "<html><body>" +
-                    "<h2>project 이메일 인증</h2>" +
+                    "<h2>Movie Picnic 이메일 인증</h2>" +
                     "<p>아래의 번호로 인증을 완료해주세요.</p>" +
                     "<h1>"+randomNumber+"</h1>" +
                     "<p>감사합니다.</p>" +
@@ -52,9 +52,9 @@ public class MailService{
             String tmpPw = getTempPassword();
             message.setFrom(new InternetAddress(fromEmail,"project"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-            message.setSubject("[project] 임시 비밀번호 발급 안내입니다.");
+            message.setSubject("[Movie Picnic] 임시 비밀번호 발급 안내입니다.");
             String text = "<html><body>" +
-                    "<h2>project 임시 비밀번호 발급</h2>" +
+                    "<h2>Movie Picnic 임시 비밀번호 발급</h2>" +
                     "<p>아래의 비밀번호로 다시 로그인 해주세요.</p>" +
                     "<h1>"+tmpPw+"</h1>" +
                     "<p>홈페이지 접속 후 비밀번호를 변경해주세요.</p>" +

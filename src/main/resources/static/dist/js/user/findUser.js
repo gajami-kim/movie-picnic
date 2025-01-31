@@ -20,26 +20,23 @@ window.addEventListener('load',()=>{
                     <div class="showNoEmail">존재하지 않는 닉네임입니다.<br>다시 입력 해주세요.</div>`;
                     emailModal.style.display='block';
                 } else if(result.provider){
-                    document.querySelector('.findEModal').innerHTML+=`
-                    <button class="modalClose" onclick="closeModal()">X</button>`
-                        if(result.provider=="google"){
-                            document.querySelector('.findEModal').innerHTML+=`<div class="showEmail">${result.nickname}님은 구글로 회원가입 되었습니다.</div>`;
-                        } else if(result.provider=="naver"){
-                            document.querySelector('.findEModal').innerHTML+=`<div class="showEmail">${result.nickname}님은 네이버로 회원가입 되었습니다.</div>`;
-                        } else {
-                            document.querySelector('.findEModal').innerHTML+=`<div class="showEmail">${result.nickname}님은 카카오로 회원가입 되었습니다.</div>`;
-                        }
-                    document.querySelector('.findEModal').innerHTML+=`
-                    <a href="/user/login" class="findUserLogin">로그인 하기</a>
-                    <a href="/user/findUser">비밀번호 찾기</a>`;
-                    emailModal.style.display='block';
-                } else if(!result.provider){
-                    document.querySelector('.findEModal').innerHTML=`
-                    <button class="modalClose" onclick="closeModal()">X</button>
-                    <div class="showEmail">${result.nickname}님의 이메일은 ${result.email} 입니다.</div>
-                    <a href="/user/login" class="findUserLogin">로그인 하기</a>
-                    <a href="/user/findUser">비밀번호 찾기</a>`;
-                    emailModal.style.display='block';
+                    document.querySelector('.findEModal').innerHTML += `<button class="modalClose" onclick="closeModal()">X</button>`;
+
+                    const providerMessages = {
+                        google: '구글 로그인 유저입니다.',
+                        naver: '네이버 로그인 유저입니다.',
+                        kakao: '카카오 로그인 유저입니다.'
+                    };
+
+                    const provider = result.provider;
+                    const message = providerMessages[provider];
+
+                    document.querySelector('.findEModal').innerHTML += `<div class="showEmail">${result.nickname}님은 ${message}</div>`;
+                    document.querySelector('.findEModal').innerHTML += `
+                        <a href="/user/login" class="findUserLogin">로그인 하기</a>
+                        <a href="/user/findUser">비밀번호 찾기</a>`;
+                    emailModal.style.display = 'block';
+
                 }
             })
         } else if(nick.value=='') {
@@ -50,11 +47,13 @@ window.addEventListener('load',()=>{
     findPw.addEventListener('click',()=>{
         if(!pwNick.value==''&&!pwEmail.value==''){
             findPwF(pwNick.value,pwEmail.value).then(r=>{
-                if(r==="1"){
+                if(r==="일반유저"){
                     alert("이메일 전송이 완료되었습니다.");
                     window.location.href="/";
-                } else {
+                } else if(r==="0") {
                     alert("존재하지 않는 닉네임 또는 이메일입니다. \n다시 입력해주세요.")
+                } else {
+                    alert(r.toString());
                 }
             })
         } else{

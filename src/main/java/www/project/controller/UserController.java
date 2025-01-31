@@ -118,11 +118,16 @@ public class UserController {
     @PostMapping("/find/{nick}/{email}")
     @ResponseBody
     public String findUserPw(@PathVariable("nick")String nick, @PathVariable("email")String email){
-        if(usv.findUserPw(nick,email)>0){
-            msv.sendNewPw(email);
-            return "1";
+        Map<String, Object> findUser = usv.findUser(nick, email);
+        if(findUser==null){
+            return "0";
+        } else if(findUser.get("email")!=null && findUser.get("provider")!=null) {
+            String provider = findUser.get("provider").equals("google")? "구글"
+                    : findUser.get("provider").equals("naver") ? "네이버" : "카카오";
+            return provider+" 로그인 유저입니다.";
+        } else {
+            return "일반유저";
         }
-        return "0";
     }
 
     //이메일 인증발송

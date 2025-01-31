@@ -1,6 +1,6 @@
 .container {
     width: 1300px;
-    margin: 20px 300px; /* 좌우 여백 300px */
+    margin: 20px auto;
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -9,15 +9,17 @@
     width: 80%;
     margin: 0 auto;
 }
-.findLogo{
-    width: 80%;
-    height: 100px;
-    background-color: #fde5e9;
-    margin: 30px auto 30px;
+.LoginLogoImg {
+    width: 300px;
+    margin: 10px 358px 20px;
+    position: relative;
 }
 .findArea{
     width: 660px;
     margin: 0 auto;
+}
+.findArea div:nth-of-type(2) {
+    padding: 6px 0;
 }
 input {
     width: 650px;

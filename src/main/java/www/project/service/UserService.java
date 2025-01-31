@@ -36,4 +36,6 @@ public interface UserService {
     List<UserFollowVO> getFollowerList(String currentId);
 
     List<UserFollowVO> getFollowingList(String currentId);
+
+    Map<String, Object> findUser(String nick, String email);
 }

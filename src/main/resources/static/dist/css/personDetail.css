@@ -46,3 +46,13 @@
     height: 210px;
     border-radius: 8px;
 }
+.mPadding{
+    padding-bottom: 11px;
+}
+.personLi{
+    padding: 7px 0 17px;
+    font-size: 17px;
+}
+.personUl {
+    margin-left: 20px;
+}

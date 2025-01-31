@@ -45,7 +45,6 @@
         update user set pw=#{pw} where email=#{email}
     </update>
 
-
     <select id="searchUser" resultType="www.project.domain.UserVO">
         select * from user where provider_id=#{providerId}
     </select>
@@ -92,5 +91,17 @@
     </select>
     <select id="getFollowingList" resultType="www.project.domain.UserFollowVO">
         select follow_email from user_follow where email = #{currentId}
+    </select>
+
+    <select id="findUser" resultType="map">
+        SELECT email,
+        CASE WHEN email LIKE '(%)%'
+        THEN SUBSTRING_INDEX(SUBSTRING_INDEX(email, '(', -1), ')', 1)
+        ELSE NULL
+        END AS provider
+        FROM user
+        WHERE nickname = #{nick}
+        AND (email = #{email} OR email REGEXP CONCAT('\\(.*\\)[[:space:]]*', #{email}))
+        LIMIT 1
     </select>
 </mapper>

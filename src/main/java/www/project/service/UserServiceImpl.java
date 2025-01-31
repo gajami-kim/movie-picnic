@@ -97,4 +97,9 @@ public class UserServiceImpl implements UserService{
     public List<UserFollowVO> getFollowingList(String currentId) {
         return usermapper.getFollowingList(currentId);
     }
+
+    @Override
+    public Map<String, Object> findUser(String nick, String email) {
+        return usermapper.findUser(nick, email);
+    }
 }

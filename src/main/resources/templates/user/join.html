@@ -5,7 +5,9 @@
     <th:block th:fragment="content">
         <div class="container">
             <div class="Join">
-                <div class="JoinLogo"></div>
+                <div class="LoginLogo">
+                    <img src="/image/movieLogo2.png" alt="logo" class="LoginLogoImg">
+                </div>
                 <form action="/user/join" method="POST" class="JoinArea">
                     <div class="JoinInputArea">
                         <input type="text" name="email" id="JoinEmail" onchange="changeValue()" placeholder="이메일">

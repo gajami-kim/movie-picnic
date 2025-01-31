@@ -52,4 +52,6 @@ public interface UserMapper {
     List<UserFollowVO> getFollowerList(String currentId);
 
     List<UserFollowVO> getFollowingList(String currentId);
+
+    Map<String, Object> findUser(@Param("nick") String nick, @Param("email") String email);
 }
